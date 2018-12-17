@@ -1,0 +1,120 @@
+<html>
+
+<head>
+	<thead><h1><left><strong>Test Your Reactions!</strong></left></h1></thead>
+
+	<title>Reaction Time!</title>
+	<style type="text/css">
+
+		body{
+
+			font-family: Verdana;
+
+		}
+
+
+
+		#shape {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			display: none;
+			position: relative;
+
+
+	}
+	</style>
+
+
+
+</head>
+
+
+<body>
+	<p>Click on the Squares and Circles as fast as you can!</p>
+
+	<p><strong>Your Time: <span id="timeTaken"></span></strong></p>
+	<div id="shape"></div>
+
+	<script type="text/javascript">
+
+		function getRandomColor() {
+
+  		var letters = '0123456789ABCDEF';
+
+ 		var color = '#';
+
+  		for (var i = 0; i < 6; i++) {
+
+    	color += letters[Math.floor(Math.random() * 16)];
+
+ 		 }
+
+  		return color;
+
+  	}
+		var start = new Date().getTime();
+
+		function appear(){
+			var top = Math.random() * 400;
+
+			var left = Math.random() * 400;
+
+			var width = (Math.random() * 200) + 100;
+
+			if (Math.random() > 0.5) {
+
+				document.getElementById("shape").style.borderRadius = "50%";
+
+			} else {
+
+				document.getElementById("shape").style.borderRadius = "0";
+
+			}
+
+			document.getElementById("shape").style.display = "block";
+
+			document.getElementById("shape").style.top = top + "px";
+
+			document.getElementById("shape").style.left = left + "px";
+
+			document.getElementById("shape").style.width = width + "px";
+
+			document.getElementById("shape").style.height = width + "px";
+
+			document.getElementById("shape").style.backgroundColor = getRandomColor();
+
+			start = new Date().getTime();
+
+		}
+		function appearAfterDelay(){
+			setTimeout(appear, Math.random() * 2000);
+		}
+
+
+		appearAfterDelay();
+
+		document.getElementById("shape").onclick = function() {
+
+			document.getElementById("shape").style.display = "none";
+
+		var end = new Date().getTime();
+		var timeTaken = (end - start) / 1000;
+
+			document.getElementById("timeTaken").innerHTML = timeTaken + "s";
+
+		appearAfterDelay();
+
+		}
+
+	</script>
+
+
+
+
+
+
+</body>
+
+
+</html>
